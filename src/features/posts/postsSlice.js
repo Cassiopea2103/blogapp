@@ -35,10 +35,33 @@ export const postsSlice= apiSlice.injectEndpoints({
                 {type: 'POSTS', id: 'LIST'},
                 ...result.ids.map((id)=> ({type: 'POSTS', id}))
             ]
+        }),
+        
+        addPost: builder.mutation({
+            query: (initialPost)=>({
+                url: '/posts',
+                method: 'POST',
+                body: {
+                    ...initialPost,
+                    date: new Date().toISOString(),
+                    userId: Number(initialPost.userId),
+                    reactions: {
+                        like: 0,
+                        wow: 0,
+                        love: 0,
+                        sad: 0,
+                        laugh: 0
+                    },
+                }
+            }),
+            invalidatesTags: [
+                {type: 'POSTS', id: 'LIST'}
+            ]
         })
     })
 })
 
 export const {
-    useFetchPostsQuery
+    useFetchPostsQuery,
+    useAddPostMutation
 }= postsSlice

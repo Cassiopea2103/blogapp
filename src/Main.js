@@ -1,12 +1,27 @@
+import {Routes, Route} from 'react-router-dom'
+
+import Layout from './Components/Layout'
+
 import PostsList from "./features/posts/PostsList";
+import AddPostForm from "./features/posts/AddPostForm";
 
 const Main= ()=> {
   return (
-    <div className="App">
+    <Routes>
 
-      <PostsList/>      
+        <Route path='/' element={<Layout/>}>
 
-    </div>
+          <Route index element={<PostsList/>} />
+
+          <Route path='posts'>
+
+            <Route index element={<AddPostForm/>}/>
+
+          </Route>
+
+        </Route>
+
+    </Routes>
   );
 }
 

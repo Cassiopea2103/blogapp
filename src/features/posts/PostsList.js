@@ -10,13 +10,14 @@ const PostsList= ()=>{
         isError,
         error
     }= useFetchPostsQuery()
-    console.log(posts)
 
     let content;
     if (isLoading) content= <p>Loading Posts...</p>
     else if (isSuccess) {
         const {ids, entities}= posts
         content= ids.map((postId)=> <PostExcerpt key={postId} post= {entities[postId]} />)
+    } else if (isError){
+        content= {error}
     }
 
     return (
