@@ -7,6 +7,14 @@
 ```bash
 npm install 
 ```
+
+## Launch json-server to load data in data.json on port 3500
+
+```bash
+npx json-server -w data/data.json -p 3500
+```
+__Make sure you provide a correct relative path to the command executed from the directory your point at__
+
 ## Start the App
 
 ```bash
