@@ -5,6 +5,7 @@ import Layout from './Components/Layout'
 //Posts components:
 import PostsList from "./features/posts/PostsList";
 import AddPostForm from "./features/posts/AddPostForm";
+import EditPostForm from './features/posts/EditPostForm'
 import SinglePostPage from './features/posts/SinglePostPage'
 
 // Users Components:
@@ -23,6 +24,7 @@ const Main= ()=> {
           <Route path='posts'>
 
             <Route index element={<AddPostForm/>}/>
+            <Route path='editPost/:postId' element= {<EditPostForm/>}/>
             <Route path= ':postId' element={<SinglePostPage/>} />
 
           </Route>

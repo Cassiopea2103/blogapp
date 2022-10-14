@@ -124,6 +124,10 @@ textarea {
   font-size: 1rem;
 }
 
+.editButton{
+  background-color: '#36dac0'
+}
+
 .deleteButton {
   background-color: palevioletred;
   color: white;

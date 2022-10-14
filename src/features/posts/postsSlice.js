@@ -80,8 +80,23 @@ export const postsSlice= apiSlice.injectEndpoints({
                 {type: 'POSTS', id: 'LIST'}
             ]
         }),
-        
 
+        updatePost: builder.mutation({
+            query: ( initialPost )=>({
+                url: `/posts/${initialPost.id}`,
+                method: 'PUT',
+                body: {
+                    ...initialPost,
+                    //override the ancient post date
+                    date: new Date().toISOString()
+                }
+            }),
+            invalidatesTags: (result, error, arg)=>[
+                {type: 'POSTS', id: arg.id}
+            ]
+        })
+        ,
+        
         addReactions: builder.mutation({
             query: ({ postId, reactions })=>({
                 url: `/posts/${postId}`,
@@ -110,6 +125,7 @@ export const {
     useFetchPostsQuery,
     useFetchPostsByUserQuery,
     useAddPostMutation,
+    useUpdatePostMutation,
     useAddReactionsMutation
 }= postsSlice
 
