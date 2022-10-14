@@ -6,7 +6,7 @@ import { selectAllUsers } from '../users/usersSlice'
 
 import { useParams, useNavigate } from  'react-router-dom'
 
-import { useUpdatePostMutation } from './postsSlice'
+import { useUpdatePostMutation, useDeletePostMutation } from './postsSlice'
 
 const EditPostForm= ()=> {
 
@@ -18,7 +18,8 @@ const EditPostForm= ()=> {
     
     const post= useSelector((state)=> selectPostById(state, Number(postId)))
 
-    const [updatePost, {isLoading}]= useUpdatePostMutation(post)
+    const [updatePost, {isLoading}]= useUpdatePostMutation()
+    const [deletePost]= useDeletePostMutation()
 
     const [editTitle, setEditTitle]= useState(post?.title)
     const [editUserId, setEditUserId]= useState(post?.userId)
@@ -36,16 +37,25 @@ const EditPostForm= ()=> {
         </option>
     ))
 
-    const onEditPostClick= ()=> {
+    const onEditPostClick= async()=> {
         try{
             if (!isLoading){
-                updatePost({id: post.id, userId: editUserId, body: editBody, title: editTitle})
+                await updatePost({id: post.id, userId: editUserId, body: editBody, title: editTitle}).unwrap()
                 setEditTitle('')
                 setEditBody('')
                 setEditUserId('')
                 navigate(`/`)
-            }
+            } 
         } catch (error){
+            console.log(error)
+        }
+    }
+
+    const onDeleteButtonClick= async()=>{
+        try{
+            await deletePost({postId: postId}).unwrap()
+            navigate('/')
+        }catch (error){
             console.log(error)
         }
     }
@@ -93,6 +103,14 @@ const EditPostForm= ()=> {
                     onClick= {onEditPostClick}
                 >
                     Edit Post
+                </button>
+
+                <button
+                    type= "button"
+                    className= "deleteButton"
+                    onClick= {onDeleteButtonClick}
+                >
+                    Delete Post
                 </button>
             
 

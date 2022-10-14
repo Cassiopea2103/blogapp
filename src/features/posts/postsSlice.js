@@ -96,7 +96,17 @@ export const postsSlice= apiSlice.injectEndpoints({
             ]
         })
         ,
-        
+        deletePost: builder.mutation({
+            query: ({postId})=>({
+                url: `/posts/${postId}`,
+                method: 'DELETE',
+                body: {postId}
+            }),
+            invalidatesTags: (result, error, arg)=> [
+                {type: 'POSTS', id: arg.id}
+            ]
+        })
+        ,
         addReactions: builder.mutation({
             query: ({ postId, reactions })=>({
                 url: `/posts/${postId}`,
@@ -126,6 +136,7 @@ export const {
     useFetchPostsByUserQuery,
     useAddPostMutation,
     useUpdatePostMutation,
+    useDeletePostMutation, 
     useAddReactionsMutation
 }= postsSlice
 
