@@ -1,21 +1,34 @@
-const reactionEmojis= {
-    like: '👍',
-    wow: '😮',
-    love: '❤',
-    sad: '😢',
-    laugh: '😂'
-}
+// import {useAddReactionsMutation} from '../posts/postsSlice'
 
-const ReactionButtons= ({postId})=>{
+// const reactionEmojis= {
+//     like: '👍',
+//     wow: '😮',
+//     love: '❤',
+//     sad: '😢',
+//     laugh: '😂'
+// }
 
-    const reactionButtons= Object.entries(reactionEmojis).map(([reactionName, reactionIcon])=>{
-        return (
-            <button
-                
-            ></button>
-        )
-    })
 
-}
+// const ReactionButtons= ({postId})=>{
 
-export default ReactionButtons
+//     const [addReactions]= useAddReactionsMutation()
+
+//     const reactionButtons= Object.entries(reactionEmojis).map(([reactionName, reactionIcon])=>{
+//         return (
+//             <button
+//                 key= {reactionName}
+//                 type= "button"
+//                 className= "reactionButton"
+//                 onClick= {()=> {
+//                     const newValue= post.reactions[reactionName]+ 1
+//                     addReactions({postId, reactions: {...post.reactions, [reactionName]: newValue}})
+//                 }}
+//             ></button>
+//         )
+//     })
+
+//     return <div>{reactionButtons}</div>
+
+// }
+
+// export default ReactionButtons

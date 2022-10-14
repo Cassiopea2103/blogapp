@@ -6,7 +6,7 @@ import {
 import {apiSlice} from '../api/apiSlice'
 
 const usersAdapter= createEntityAdapter({
-    sortComparer: (userA, userB)=> userB.id- userA.id
+    sortComparer: (userA, userB)=> userA.id- userB.id
 })
 
 const initialState= usersAdapter.getInitialState()

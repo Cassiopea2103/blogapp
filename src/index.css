@@ -128,3 +128,21 @@ textarea {
   background-color: palevioletred;
   color: white;
 }
+
+.usersList {
+    flex: 1;
+    padding: 10px 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column
+}
+
+.usersList ul{
+  list-style: none;
+}
+.usersList ul li{
+  font-size: 22;
+  color: '#36be90';
+  margin: 5px 0;
+}

@@ -36,6 +36,28 @@ export const postsSlice= apiSlice.injectEndpoints({
                 ...result.ids.map((id)=> ({type: 'POSTS', id}))
             ]
         }),
+
+        fetchPostsByUser: builder.query({
+            query: ( userId )=> `/posts/?userId=${userId}`,
+            transformResponse: userPosts=>{
+                const loadedPosts= userPosts.map((userPost)=>{
+                    let min= 1;
+                    if (!userPost.date) userPost.date= sub (new Date(), {minutes: min++}).toISOString()
+                    if (!userPost.reactions) userPost.reactions= {
+                        like: 0,
+                        wow: 0,
+                        love: 0,
+                        sad: 0,
+                        laugh: 0
+                    }
+                })
+                return postsAdapter.setAll(initialState, userPosts)
+            },
+            providesTags: (result, error, arg)=>[
+                {type: 'POSTS', id: 'LIST'},
+                ...result.ids.map((id)=> ({type: 'POSTS', id: 'LIST'}))
+            ]
+        }),
         
         addPost: builder.mutation({
             query: (initialPost)=>({
@@ -57,11 +79,48 @@ export const postsSlice= apiSlice.injectEndpoints({
             invalidatesTags: [
                 {type: 'POSTS', id: 'LIST'}
             ]
+        }),
+        
+
+        addReactions: builder.mutation({
+            query: ({ postId, reactions })=>({
+                url: `/posts/${postId}`,
+                method: 'PATCH',
+                body: { reactions }
+            }),
+            async onQueryStarted({postId, reactions}, {dispatch, queryFulfilled}){
+                const patchResult= await dispatch(postsSlice.util.updateQueryData(
+                    'fetchPosts', undefined, draft=>{
+                        const post= draft.entities[postId]
+                        if (post) post.reactions= reactions
+                    }
+                ))
+
+                try{
+                    await queryFulfilled
+                } catch{
+                    patchResult.undo()
+                }
+            }
         })
     })
 })
 
 export const {
     useFetchPostsQuery,
-    useAddPostMutation
+    useFetchPostsByUserQuery,
+    useAddPostMutation,
+    useAddReactionsMutation
 }= postsSlice
+
+const fetchPostsQueryObj= postsSlice.endpoints.fetchPosts.select()
+
+const fetchPostsQueryData= createSelector(
+    fetchPostsQueryObj,
+    posts=> posts.data
+)
+
+export const {
+    selectall: selectAllPosts,
+    selectById: selectPostById
+}= postsAdapter.getSelectors(state=> fetchPostsQueryData(state) ?? initialState)

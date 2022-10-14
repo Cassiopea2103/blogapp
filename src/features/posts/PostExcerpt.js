@@ -11,9 +11,14 @@ const PostExcerpt= ({post})=>{
             <h2>{post.title}</h2>
             <p className= 'postExcerpt'>{post.body.substring(0, 50)}</p>
             <p className= 'postCredit'>
-                <Link to={`/users/${post.userId}`}><PostAuthor userId= {post.userId}/></Link>
+                <Link to={`/posts/${post.id}`}>View Post</Link>
+                <PostAuthor userId= {post.userId}/>
                 <TimeAgo timestamp= {post.date}/>
+                
             </p>
+            
+
+            {/* <ReactionButtons/> */}
 
         </article>
     )
