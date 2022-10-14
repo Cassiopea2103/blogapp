@@ -50,8 +50,9 @@ export const postsSlice= apiSlice.injectEndpoints({
                         sad: 0,
                         laugh: 0
                     }
+                    return userPost
                 })
-                return postsAdapter.setAll(initialState, userPosts)
+                return postsAdapter.setAll(initialState, loadedPosts)
             },
             providesTags: (result, error, arg)=>[
                 {type: 'POSTS', id: 'LIST'},

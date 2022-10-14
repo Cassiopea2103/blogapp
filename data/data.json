@@ -12,7 +12,14 @@
       "userId": 1,
       "body": "Will it save the previous changes?",
       "title": "This post is updated",
-      "date": "2022-10-14T22:17:18.766Z"
+      "date": "2022-10-14T22:17:18.766Z",
+      "reactions": {
+        "like": 0,
+        "wow": 0,
+        "love": 0,
+        "sad": 0,
+        "laugh": 8
+      }
     },
     {
       "userId": 1,
@@ -62,11 +69,11 @@
       "title": "My last change over there",
       "date": "2022-10-14T22:37:58.128Z",
       "reactions": {
-        "like": 0,
-        "wow": 0,
+        "like": 5,
+        "wow": 5,
         "love": 0,
-        "sad": 0,
-        "laugh": 0
+        "sad": 3,
+        "laugh": 3
       },
       "id": 108
     },
@@ -77,10 +84,10 @@
       "date": "2022-10-14T22:48:51.705Z",
       "reactions": {
         "like": 0,
-        "wow": 0,
+        "wow": 3,
         "love": 0,
-        "sad": 0,
-        "laugh": 0
+        "sad": 5,
+        "laugh": 5
       },
       "id": 109
     }

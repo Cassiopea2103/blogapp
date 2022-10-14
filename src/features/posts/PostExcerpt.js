@@ -14,11 +14,10 @@ const PostExcerpt= ({post})=>{
                 <Link to={`/posts/${post.id}`}>View Post</Link>
                 <PostAuthor userId= {post.userId}/>
                 <TimeAgo timestamp= {post.date}/>
-                
             </p>
             
-
-            {/* <ReactionButtons/> */}
+            <ReactionButtons  post={post}/>
+            
 
         </article>
     )
