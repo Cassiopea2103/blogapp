@@ -1,6 +1,9 @@
 import {useFetchUsersQuery} from './usersSlice'
 import { Link } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 const UsersList= ()=> {
 
     const {
@@ -28,7 +31,25 @@ const UsersList= ()=> {
 
     return (
         <section className= "usersList">
-            <h2>Users</h2>
+            
+            <h2>
+                Users List
+            </h2>
+            
+            <Link to={`/users/addUser`}>
+                    
+            <button
+                type= 'button'
+                className='addUserButton'
+            >
+                <FontAwesomeIcon
+                    className= 'addUserIcon'
+                    icon= {faPlus}
+                />
+                <span>Add New User</span>
+            </button>
+            </Link>
+
             <ul>
                 {content}
             </ul>

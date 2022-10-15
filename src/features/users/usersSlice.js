@@ -21,19 +21,31 @@ export const usersSlice= apiSlice.injectEndpoints({
                 {type: 'USERS', id: 'LIST'},
                 ...result.ids.map((id)=>({type: 'USERS', id: 'LIST'}))
             ]
+        }),
+        addUser: builder.mutation({
+            query: (userInfos)=>({
+                url: `/users`,
+                method: 'POST',
+                body: {
+                    ...userInfos
+                }
+            }),
+            invalidatesTags: [
+                {type: 'USERS', id: 'LIST'}
+            ]
         })
     })
 })
 
-export const {
-    useFetchUsersQuery
+export  const {
+    useFetchUsersQuery,
+    useAddUserMutation
 }= usersSlice
 
+const usersObj= usersSlice.endpoints.fetchUsers.select()
 
-//users data selector:
-const usersObject= usersSlice.endpoints.fetchUsers.select()
-const usersData= createSelector(
-    usersObject,
+export const usersData= createSelector(
+    usersObj,
     users=> users.data
 )
 

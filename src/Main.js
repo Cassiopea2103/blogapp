@@ -11,6 +11,7 @@ import SinglePostPage from './features/posts/SinglePostPage'
 // Users Components:
 import UsersList from './features/users/UsersList'
 import SingelUserPage from './features/users/SingleUserPage'
+import AddUserForm from './features/users/AddUserForm'
 
 const Main= ()=> {
   return (
@@ -34,6 +35,7 @@ const Main= ()=> {
 
             <Route index element= {<UsersList/>}/>
             <Route path=':userId' element= {<SingelUserPage/>} />
+            <Route path= 'adduser' element={<AddUserForm/>} />
 
           </Route>
 

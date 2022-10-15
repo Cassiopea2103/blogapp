@@ -125,7 +125,7 @@ textarea {
 }
 
 .editButton{
-  background-color: '#36dac0'
+  background-color: #36dac0
 }
 
 .deleteButton {
@@ -139,14 +139,44 @@ textarea {
     justify-content: center;
     align-items: center;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 }
 
 .usersList ul{
   list-style: none;
+  width: 500px;
+  border: 1px solid black;
+  border-radius: 15px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  
 }
 .usersList ul li{
   font-size: 22;
   color: '#36be90';
   margin: 5px 0;
 }
+.addUserButton{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    background-color: purple;
+    color: #fff;
+}
+.addUserButton:hover{
+  background-color: cornflowerblue;
+}
+
+.addUserButton span {
+    margin-left: 10px;
+}
+
+.addUserSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
