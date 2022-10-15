@@ -180,3 +180,21 @@ textarea {
   justify-content: center;
 }
 
+.singleUserPage ul{
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  list-style: decimal;
+  border: 1px solid gray;
+  padding: 20px 40px;
+  border-radius: 15px;
+}
+.singleUserPage ul li{
+  margin-top: 10px;
+  text-transform: capitalize;
+}
+
+.singleUserPage h2{
+  text-align: center;
+  margin-top: 15px;
+}

@@ -25,7 +25,6 @@ const AddUserForm= ()=>{
             console.log(error)
         }
     }
-
     return (
         <section className= 'addUserSection'>
             <h2>Add New User</h2>
